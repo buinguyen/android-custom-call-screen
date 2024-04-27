@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.nguyenbnt.android'
+    compileSdkVersion build_versions.compile_sdk
+
+    defaultConfig {
+        applicationId "com.nguyenbnt.android"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+        exclude "META-INF/gradle/incremental.annotation.processors"
+    }
+}
+
+dependencies {
+
+    implementation libs.support.core_ktx
+    implementation libs.support.constraintlayout
+    implementation libs.lifecycle.runtime
+
+    testImplementation libs.test.values()
+    androidTestImplementation libs.androidTest.values()
+}
